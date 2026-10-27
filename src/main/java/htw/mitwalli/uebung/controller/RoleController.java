@@ -14,29 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import htw.mitwalli.uebung.repository.RoleRepository;
-
-
 @RestController
 @RequestMapping("/role")
 public class RoleController {
-
-    private final RoleRepository roleRepository;
-
-    public RoleController(RoleRepository roleRepository){
-        this.roleRepository=roleRepository;
-    }
-
-    @PostMapping
-    public ResponseEntity<Role> createRole(@RequestBody RoleRequestDTO roleRequestDTO){
-        if(roleRepository.existsByRole(roleRequestDTO.role())
-        {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
-        Role role = roleRequestDTO.toRole();
-        Role saved = roleRepository.save(role);
-        return new ResponseEntity<>(saved, HttpStatus.CREATED);
-    }
 
     private final RoleService roleService;
 
@@ -44,15 +24,14 @@ public class RoleController {
         this.roleService = roleService;
     }
 
-    @PostMapping 
+    @PostMapping
     public ResponseEntity<RoleResponseDTO> create(@RequestBody RoleRequestDTO request) {
         RoleResponseDTO created = roleService.create(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
-     @GetMapping
+    @GetMapping
     public ResponseEntity<List<RoleResponseDTO>> findAll() {
         return ResponseEntity.ok(roleService.findAll());
     }
-
 }
