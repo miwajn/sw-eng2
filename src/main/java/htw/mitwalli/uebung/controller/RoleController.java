@@ -3,6 +3,7 @@ package htw.mitwalli.uebung.controller;
 import htw.mitwalli.uebung.dto.RoleRequestDTO;
 import htw.mitwalli.uebung.dto.RoleResponseDTO;
 import htw.mitwalli.uebung.service.RoleService;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +14,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import htw.mitwalli.uebung.repository.RoleRepository;
+
 
 @RestController
 @RequestMapping("/role")
 public class RoleController {
+
+    private final RoleRepository roleRepository;
+
+    public RoleController(RoleRepository roleRepository){
+        this.roleRepository=roleRepository;
+    }
+
+    @PostMapping
+    public ResponseEntity<Role> createRole(@RequestBody RoleRequestDTO roleRequestDTO){
+        Role role = roleRequestDTO.toRole();
+        Role saved = roleRepository.save(role);
+        return new ResponseEntity<>(saved, HttpStatus.CREATED);
+    }
 
     private final RoleService roleService;
 
@@ -25,7 +41,7 @@ public class RoleController {
     }
 
     @PostMapping 
-    public ResponseEntity<RoleResponseDTO> create(@RequestBody  RoleRequestDTO request) {
+    public ResponseEntity<RoleResponseDTO> create(@RequestBody RoleRequestDTO request) {
         RoleResponseDTO created = roleService.create(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }

@@ -34,9 +34,9 @@ public class StudentController {
     public ResponseEntity<List<StudentResponseDTO>> getUsers() {
 
         List<StudentResponseDTO> result = List.of(
-                //new StudentResponseDTO(1L, "nameone", "one@mail.de", new RoleResponseDTO(1L, "admin")),
-                //new StudentResponseDTO(2L, "nametwo", "two@mail.de", new RoleResponseDTO(2L, "user"))
+                new StudentResponseDTO(1L, "nameone", "one@mail.de", new RoleResponseDTO(1l, "admin")),
+                new StudentResponseDTO(2L, "nametwo", "two@mail.de", new RoleResponseDTO(2L, "user")),
         );
-        return ResponseEntity.ok(result);
+        return new ResponseEntity(result, HttpStatus.OK);
     }
 }
