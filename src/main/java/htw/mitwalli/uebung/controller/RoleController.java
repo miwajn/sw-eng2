@@ -29,6 +29,10 @@ public class RoleController {
 
     @PostMapping
     public ResponseEntity<Role> createRole(@RequestBody RoleRequestDTO roleRequestDTO){
+        if(roleRepository.existsByRole(roleRequestDTO.role())
+        {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
         Role role = roleRequestDTO.toRole();
         Role saved = roleRepository.save(role);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
