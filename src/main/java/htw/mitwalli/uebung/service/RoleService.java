@@ -5,6 +5,10 @@ import htw.mitwalli.uebung.dto.RoleResponseDTO;
 import htw.mitwalli.uebung.entity.Role;
 import htw.mitwalli.uebung.repository.RoleRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.http.HttpStatus;
+
+import java.util.List;
 
 @Service
 public class RoleService {

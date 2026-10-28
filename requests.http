@@ -1,0 +1,26 @@
+### Alle Rollen
+GET http://localhost:8080/role
+
+### Rolle anlegen
+POST http://localhost:8080/role
+Content-Type: application/json
+
+{
+  "role": "student"
+}
+
+### Student anlegen
+POST http://localhost:8080/student
+Content-Type: application/json
+
+{
+  "firstname": "Mira",
+  "lastname": "Miro",
+  "password": "geheim123",
+  "email": "mira@test.de",
+  "currentSemester": 3,
+  "roleId": 1
+}
+
+### Alle Studenten
+GET http://localhost:8080/student

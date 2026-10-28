@@ -7,7 +7,7 @@ public record RoleRequestDTO(String role) {
     {
         Role role = new Role();
         role.setRole(this.role);
-        return Role;
+        return role;
     }
 
 }

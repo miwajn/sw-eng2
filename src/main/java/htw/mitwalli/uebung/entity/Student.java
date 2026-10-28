@@ -17,10 +17,10 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "firstname", nullable = false, unique = true)
+    @Column(name = "firstname", nullable = false)
     private String firstname;
 
-    @Column(name = "lastname", nullable = false, unique = true)
+    @Column(name = "lastname", nullable = false)
     private String lastname;
 
     @Column(name = "password", nullable = false)
@@ -30,7 +30,7 @@ public class Student {
     private String email;
 
     @Column(name = "current_semester", nullable = false)
-    private String currentSemester;
+    private int currentSemester;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "role_id", nullable = false)
@@ -79,11 +79,11 @@ public class Student {
         this.email = email;
     }
 
-    public String getCurrentSemester() {
+    public int getCurrentSemester() {
         return currentSemester;
     }
 
-    public void setCurrentSemester(String currentSemester) {
+    public void setCurrentSemester(int currentSemester) {
         this.currentSemester = currentSemester;
     }
 
